@@ -4,7 +4,7 @@ exports.login = async (req, res) => {
     try {
         var id = req.body.id;
         var password = req.body.password;
-        const user = await userService.getById(id);
+        const user = await userService.getById(id.toUpperCase());
         if (user) {
             const isPasswordMatch = await bcryptUtil.compareHash(password, user.password);
 
@@ -14,6 +14,7 @@ exports.login = async (req, res) => {
                     message: 'Password is incorrect.'
                 });
             }else{
+                //save attendance
                 return res.json({
                 success: true,
                 message: "User logged in successfully",
@@ -23,7 +24,7 @@ exports.login = async (req, res) => {
         } else {
             return   res.json({
                 success: false,
-                message: "Nouser found with given id",
+                message: "No user found with given id",
             });
         }
     } catch (err) {

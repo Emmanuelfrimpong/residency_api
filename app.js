@@ -9,6 +9,8 @@ const staffRoutes = require('./src/staffs/staffs.routes');
 const studentRoutes = require('./src/students/students.routes')
 const complainstRoutes = require('./src/complaints/complaints.routes');
 const messageRoutes = require('./src/messages/messages.routes');
+const keyLogsRoute = require('./src/keyLogs/keyLogs.routes')
+const AttendanceRoutes = require('./src/attendance/attendance.routes');
 app.use(cors());
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin");
@@ -26,6 +28,8 @@ app.use('/staffs', staffRoutes);
 app.use('/students', studentRoutes);
 app.use('/complaints', complainstRoutes);
 app.use('/messages', messageRoutes);
+app.use('/key-logs',keyLogsRoute);
+app.use('/attendance',AttendanceRoutes);
 
 
 app.use('*', (req, res, next) => {
